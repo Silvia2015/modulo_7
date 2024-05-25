@@ -1,0 +1,68 @@
+[
+    {
+      "precio": 30000,
+      "id": 1,
+      "nombre": "HTML",
+      "image": "https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png",
+      "stock":10,
+      "caracteristicas": {
+        "estado": "true",
+        "duracion": "1 mes",
+        "descripcion": "curso html",
+        "inscritos": 0,
+        "modalidad": "remota"
+      }
+      
+     
+      },
+      {
+        "precio":20000,
+        "id": 2,
+        "nombre": "CSS",
+        "image": "https://lineadecodigo.com/wp-content/uploads/2014/04/css.png",
+        "stock":20,
+        "caracteristicas": {
+          "estado": "false",
+          "duracion": "1 mes",
+          "descripcion": "curso css",
+          "inscritos": 0,
+          "modalidad": "remota"
+        }
+        
+       
+        },
+        {
+            "precio": 40000,
+            "id": 3,
+            "nombre": "Scss",
+            "image": "https://miro.medium.com/max/512/1*9U1toerFxB8aiFRreLxEUQ.png",
+            "stock":30,
+            "caracteristicas": {
+              "estado": "true",
+              "duracion": "2 mes",
+              "descripcion": "curso sass",
+              "inscritos": 0,
+              "modalidad": "remota"
+            }
+            
+           
+            },
+            {
+                "precio": 50000,
+                "id": 4,
+                "nombre": "VUE",
+                "image":" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQDzc6Oa8RidACamYSovP7GobW1G4-RBzUw&s",
+                "stock":15,
+                "caracteristicas": {
+                  "estado": "false",
+                  "duracion": "3 mes",
+                  "descripcion": "curso vue",
+                  "inscritos": 0,
+                  "modalidad": "remota"
+                }
+                
+               
+                }
+    
+    
+]
