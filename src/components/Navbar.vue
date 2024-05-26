@@ -6,9 +6,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
      
-        <router-link class="navbar-brand" to="/">Ferreteria La Economica</router-link>
+        <router-link class="navbar-brand" to="/">Enseñansa en linea</router-link>
   
-        <router-link to="/carrito">
+        <router-link  to="/carrito">
           <div class="icon-carrito d-md-block d-lg-none mx-3">
             <i class="fa-solid fa-cart-shopping"></i>
           </div>
@@ -29,9 +29,14 @@
             <option>VUE</option>
           </select>
   
-          <router-link to="/carrito">
+          <router-link class="carrito-container d-flex" to="/carrito">
             <div class="icon-carrito d-none d-md-none d-lg-block mx-3">
               <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div class="counter">
+              <div class="counter-number">
+                {{ Object.keys(carrito).length }}
+              </div>
             </div>
           </router-link>
   
@@ -53,6 +58,11 @@
         localStorage.removeItem('carrito');
         this.$router.push('/login');
       }
+    },
+    computed: {
+      carrito() {
+        return this.$store.state.carrito;
+      }
     }
   }
   </script>
@@ -60,6 +70,25 @@
   <style scoped>
   .icon-carrito {
     color: white;
-    font-size: 1.3rem;
+    font-size: 2rem;
+    
+  }
+  .carrito-container {
+    position:relative;
+  }
+  .counter {
+    position:absolute;
+    background-color:red;
+    padding:10px;
+    border-radius: 30%;
+    width:30px;
+    height:32px;
+    top:-8px;
+    left:37px;
+  }
+  .counter .counter-number {
+    position:relative;
+    top: -8px;
+    color:white;
   }
   </style>

@@ -2,10 +2,10 @@
     <div class="container">
   
       <input v-model="searchQuery" class="mt-5 form-control" placeholder="Buscar Productos" />
-      <div v-if="products.length === 0">Cargando productos...</div>
+      <div v-if="getProductos.length === 0">Cargando productos...</div>
       <div class="row mt-3">
         <template v-for="product in filterProduct">
-          <!-- los productos con stock superior a cero, son los productos que necesitamos renderizar  -->
+        
           <div v-if="product && product.stock > 0" :key="product.id" class="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="card h-100">
               <img v-bind:src="product.image" class="card-img-top" alt="producto">
@@ -40,7 +40,7 @@
   </template>
   
   <script>
-  import productService from '@/services/api';
+ 
   import AppModal from '@/components/AppModal.vue';
   import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
   
@@ -57,18 +57,20 @@
       };
     },
     computed: {
+        getProductos(){
+          return this.$store.state.productos;
+        },
       filterProduct() {
-        const result = this.products.filter(product => product.nombre && product.nombre.toLowerCase().includes(this.searchQuery.toLowerCase()));
+        const result = this.getProductos.filter(product => product.nombre && product.nombre.toLowerCase().includes(this.searchQuery.toLowerCase()));
         return result;
       }
     },
     methods: {
-      loadProducts() {
-        productService.all()
-          .then(data => {
-            this.products = data.map(product => ({ ...product, cantidad: 0 }));
-          }).catch(error => console.log(error))
-      },
+    loadProducts() {
+      productService.all().then(data => {
+        this.products = data.map(product => ({...product,cantidad:  0}));
+      }).catch(error => console.log(error))
+    },
       changeQuantity(product, change) {
         const nuevaCantidad = product.cantidad + change;
         if (nuevaCantidad >= 0 && nuevaCantidad <= product.stock) {
@@ -93,6 +95,7 @@
                 cantidad: product.cantidad
               };
             }
+            this.$store.dispatch('agregarAlCarrito',carrito);
             localStorage.setItem('carrito', JSON.stringify(carrito));
           } else {
             alert(`No se puede agregar esa cantidad. Stock disponible: ${product.stock - cantidadActualEnCarrito}`);
@@ -113,7 +116,8 @@
     },
   
     created() {
-      this.loadProducts();
+      this.$store.dispatch('getProductosApi')
+     // this.loadProducts();
     },
   }
   </script>
